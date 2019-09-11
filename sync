@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+files=(
+  "${HOME}/.p10k.zsh"
+  "${HOME}/.vimrc"
+  "${HOME}/.zshrc"
+  "${HOME}/.zshrc-home"
+  "${HOME}/.zshrc-work"
+)
+
+for f in $files;
+do
+  rsync $f .
+done

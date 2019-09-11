@@ -1,0 +1,3 @@
+alias deploy='ssh -t prod "source ~/.zshrc && deploy"'
+alias rsyncProd="rsync -rav prod:/var/www/html ${HOME}/Developer/senate.mn/"
+# vi:syntax=zsh
