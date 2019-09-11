@@ -12,3 +12,6 @@ for f in $files;
 do
   rsync $f .
 done
+
+rm Brewfile
+brew bundle dump
