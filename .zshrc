@@ -157,7 +157,6 @@ unalias mv
 
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
-source ansible-env-setup
 hn=$(hostname)
 
 case $(hostname) in
