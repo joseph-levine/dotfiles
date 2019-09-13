@@ -87,7 +87,6 @@ DISABLE_UPDATE_PROMPT=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   colored-man-pages
-  colorize
   common-aliases
   git
   gpg-agent
@@ -142,6 +141,7 @@ alias rmds='find . -type f -name ".DS_Store" -delete'
 
 alias sshconfig='$EDITOR ~/.ssh/config'
 alias activate='source venv/bin/activate'
+alias cat='bat'
 
 originalSSHFS=$(which sshfs)
 sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
