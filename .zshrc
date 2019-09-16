@@ -141,6 +141,8 @@ alias rmds='find . -type f -name ".DS_Store" -delete'
 
 alias sshconfig='$EDITOR ~/.ssh/config'
 alias activate='source venv/bin/activate'
+
+export BAT_PAGER=''
 alias cat='bat'
 
 originalSSHFS=$(which sshfs)
