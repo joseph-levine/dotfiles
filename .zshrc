@@ -142,6 +142,8 @@ alias rmds='find . -type f -name ".DS_Store" -delete'
 alias sshconfig='$EDITOR ~/.ssh/config'
 alias activate='source venv/bin/activate'
 
+alias -g YN="then echo 'true'; else echo 'false'; fi"
+
 export BAT_PAGER=''
 alias cat='bat'
 
@@ -151,7 +153,6 @@ unsshfs() { umount $1; rmdir ~/$1; }
 
 timer() { sleep "$@" && echo ; }
 cw() { cat $(which $1); }
-dev() { if [ -z $1 ]; then cd ~/Developer; else cd ~/Developer/$1; fi }
 
 unalias rm
 unalias cp

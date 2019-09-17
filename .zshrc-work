@@ -1,4 +1,7 @@
 alias deploy='ssh -t prod "source ~/.zshrc && deploy"'
+alias deploy_laravel='ssh -t prod "source ~/.zshrc && deploy_laravel"'
+alias deploy_intranet='ssh -t prod "source ~/.zshrc && deploy_intranet"'
 alias rsyncProd="rsync -rav prod:/var/www/html ${HOME}/Developer/senate.mn/"
-source ansible-env-setup
+source ansible-env-setup-src
+source dev-src
 # vi:syntax=zsh
