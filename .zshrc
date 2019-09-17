@@ -156,6 +156,7 @@ dev() { if [ -z $1 ]; then cd ~/Developer; else cd ~/Developer/$1; fi }
 unalias rm
 unalias cp
 unalias mv
+unalias fd
 
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
