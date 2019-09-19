@@ -146,6 +146,8 @@ alias -g YN="then echo 'true'; else echo 'false'; fi"
 
 export BAT_PAGER=''
 alias cat='bat'
+alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
 
 originalSSHFS=$(which sshfs)
 sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
@@ -153,6 +155,7 @@ unsshfs() { umount $1; rmdir ~/$1; }
 
 timer() { sleep "$@" && echo ; }
 cw() { cat $(which $1); }
+aliases() { alias | bat -l zsh --style plain; }
 
 unalias rm
 unalias cp

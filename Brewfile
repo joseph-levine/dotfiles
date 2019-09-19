@@ -20,6 +20,7 @@ brew "fish"
 brew "unixodbc"
 brew "git"
 brew "gnupg", link: false
+brew "go"
 brew "gradle"
 brew "htop"
 brew "imagemagick"
