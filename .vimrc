@@ -6,7 +6,7 @@ Plug 'dense-analysis/ale'
 Plug 'pearofducks/ansible-vim', { 'do': 'cd ./UltiSnips; ./generate.py' }
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-sensible'
-Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --all' }
+Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --cs-completer --rust-completer --ts-completer' }
 call plug#end()
 
 let g:is_posix = 1
