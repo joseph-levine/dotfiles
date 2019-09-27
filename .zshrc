@@ -92,10 +92,10 @@ plugins=(
   gpg-agent
   osx
   ssh-agent
-  z
 )
 
 source $ZSH/oh-my-zsh.sh
+source /usr/local/etc/profile.d/z.sh
 
 # User configuration
 
