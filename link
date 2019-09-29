@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+
+symlink() { ln -s "$(pwd)/${1}" "${HOME}/${1}; }
+
+symlink .p10k.zsh
+symlink .vimrc
+symlink .zshrc
+symlink .zshrc-home
+symlink .zshrc-work
+
