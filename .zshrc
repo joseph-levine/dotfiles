@@ -149,6 +149,7 @@ export BAT_PAGER=''
 alias cat='bat'
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
+alias viz='vim -c "set syntax=zsh"'
 
 originalSSHFS=$(which sshfs)
 sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
