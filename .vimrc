@@ -25,4 +25,6 @@ set fixendofline
 
 " Commands
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
+com! FormatJSON :%!python3 -m json.tool
 com! TrimTrailingWhitespace :%s/\s\+$//e
+
