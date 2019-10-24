@@ -4,4 +4,14 @@ alias deploy_intranet='ssh -t prod "source ~/.zshrc && deploy_intranet"'
 alias rsyncProd="rsync -rav prod:/var/www/html ${HOME}/Developer/senate.mn/"
 source ansible-env-setup-src
 source dev-src
+
+read -r -d '' full_screen <<'EOF'
+tell application "System Events"
+	if ((count UI element of window 1 of application process "Terminal") > 2) then
+		click UI element 3 of window 1 of application process "Terminal"
+	end if
+end tell
+EOF
+
+sudo osascript -e $full_screen
 # vi:syntax=zsh
