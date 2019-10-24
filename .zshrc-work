@@ -2,6 +2,7 @@ alias deploy='ssh -t prod "source ~/.zshrc && deploy"'
 alias deploy_laravel='ssh -t prod "source ~/.zshrc && deploy_laravel"'
 alias deploy_intranet='ssh -t prod "source ~/.zshrc && deploy_intranet"'
 alias rsyncProd="rsync -rav prod:/var/www/html ${HOME}/Developer/senate.mn/"
+alias ansrc='source source-me.sh'
 source ansible-env-setup-src
 source dev-src
 
@@ -15,3 +16,4 @@ EOF
 
 sudo osascript -e $full_screen
 # vi:syntax=zsh
+
