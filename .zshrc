@@ -145,7 +145,7 @@ alias activate='source venv/bin/activate'
 
 alias -g YN="then echo 'true'; else echo 'false'; fi"
 
-export BAT_PAGER=''
+export BAT_STYLE='snip'
 alias cat='bat'
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
@@ -173,4 +173,3 @@ case $(hostname) in
     *Emperor*) source "${HOME}/.zshrc-home" ;;
     *) ;;
 esac
-

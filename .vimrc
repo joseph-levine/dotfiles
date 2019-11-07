@@ -17,6 +17,8 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'tpope/vim-sensible'
 " Auto-Completion
 Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --cs-completer --rust-completer --ts-completer' }
+" NERDTree
+Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " Settings
@@ -28,3 +30,9 @@ com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom
 com! FormatJSON :%!python3 -m json.tool
 com! TrimTrailingWhitespace :%s/\s\+$//e
 
+" keyboard mappings (be sparing with these!)
+map <C-n> :NERDTreeToggle<CR>
+
+" autocmds (be even more sparing with these!)
+" quit NERDTree if it's the last remaining window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
