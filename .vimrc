@@ -1,24 +1,26 @@
 call plug#begin('~/.vim/plugged')
 " nginx
 Plug 'chr4/nginx.vim'
-" .editorconfig
-Plug 'editorconfig/editorconfig-vim'
 " .fish
 Plug 'dag/vim-fish', { 'for': 'fish' }
 " Asynchronous Lint Engine
 Plug 'dense-analysis/ale'
-" Git
-Plug 'tpope/vim-fugitive'
+" .editorconfig
+Plug 'editorconfig/editorconfig-vim'
+" Terraform
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
 " Ansible
 Plug 'pearofducks/ansible-vim', { 'do': 'UltiSnips/generate.py', 'for': 'yaml' }
 " Rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" defaults - todo: replace
+" NERDTree
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" Git
+Plug 'tpope/vim-fugitive'
+" vim defaults - todo: replace
 Plug 'tpope/vim-sensible'
 " Auto-Completion
 Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --cs-completer --rust-completer --ts-completer' }
-" NERDTree
-Plug 'scrooloose/nerdtree'
 call plug#end()
 
 " Settings

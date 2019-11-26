@@ -93,6 +93,7 @@ plugins=(
   gpg-agent
   osx
   ssh-agent
+  terraform
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -132,7 +133,6 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 alias zshrc="$EDITOR ~/.zshrc"
 alias wipe=':>'
-mampMysql='/Applications/MAMP/Library/bin/mysql'
 alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
 alias ding='echo '
 alias timestamp='date +"%s"'
@@ -143,26 +143,31 @@ alias rmds='find . -type f -name ".DS_Store" -delete'
 alias sshconfig='$EDITOR ~/.ssh/config'
 alias activate='source venv/bin/activate'
 
-alias -g YN="then echo 'true'; else echo 'false'; fi"
-
 export BAT_STYLE='snip'
 alias cat='bat'
+alias units='gunits'
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+alias aliases='alias | bat -l zsh --style plain'
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
-alias viz='vim -c "set syntax=zsh"'
+alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 
 originalSSHFS=$(which sshfs)
 sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
 unsshfs() { umount $1; rmdir ~/$1; }
 
+ssh-close() { ssh -S ~/.ssh/$1 -O exit $1; }
+
 timer() { sleep "$@" && echo ; }
 cw() { cat $(which $1); }
-aliases() { alias | bat -l zsh --style plain; }
+dns() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; }
+# doesn't work :(
+# bool() { if [[ $@ ]]; then echo 'true'; else echo 'false'; fi }
 
 unalias rm
 unalias cp
 unalias mv
 unalias fd
+unalias gsd
 
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh

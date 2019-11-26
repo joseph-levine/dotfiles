@@ -1,10 +1,8 @@
-alias deploy='ssh -t prod "source ~/.zshrc && deploy"'
-alias deploy_laravel='ssh -t prod "source ~/.zshrc && deploy_laravel"'
-alias deploy_intranet='ssh -t prod "source ~/.zshrc && deploy_intranet"'
+alias deploy_prod='ssh -t prod "sudo -u www-data prod_pull"'
+alias deploy_laravel='ssh -t prod "sudo -u www-data laravel_pull"'
+alias deploy_intranet='ssh -t prod "sudo -u www-data intranet_pull"'
+alias deploy_tv='ssh -t tv-directories.senate.mn "sudo -u www-data tv_pull"'
 alias rsyncProd="rsync -rav prod:/var/www/html/ ${HOME}/Developer/senate.mn"
-alias ansrc='source source-me.sh'
-source ansible-env-setup-src
-source dev-src
 
 read -r -d '' full_screen <<'EOF'
 tell application "System Events"
@@ -14,6 +12,19 @@ tell application "System Events"
 end tell
 EOF
 
+function virtualenv_activate() {
+    if [[ -z "$VIRTUAL_ENV" ]]; then
+        if [[ -d ./venv ]]; then
+            activate
+        fi
+    else
+        parentdir=$(dirname "$VIRTUAL_ENV")
+        if [[ "$PWD"/ != "$parentdir"/* ]]; then
+            deactivate
+        fi
+    fi
+}
+chpwd_functions+=("virtualenv_activate")
+
 sudo osascript -e $full_screen
 # vi:syntax=zsh
-
