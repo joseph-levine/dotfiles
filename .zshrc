@@ -1,13 +1,11 @@
 # If you come from bash you might have to change your $PATH.
-mysqlPath='/usr/local/opt/mysql@5.7/bin'
 export PATH="${HOME}/bin:${PATH}"
+mysqlPath='/usr/local/opt/mysql@5.7/bin'
 export PATH="${PATH}:${mysqlPath}"
 export PATH="${PATH}:/usr/local/sbin"
 export PATH="${PATH}:${HOME}/.composer/vendor/bin"
 export PATH="${PATH}:${HOME}/.cargo/bin"
-#export PATH="${PATH}:${HOME}/bin"
-#export PATH="${PATH}:${HOME}/bin"
-#export PATH="${PATH}:${HOME}/bin"
+export PATH="${PATH}:./bin"
 #export PATH="${PATH}:${HOME}/bin"
 
 # Path to your oh-my-zsh installation.
@@ -23,16 +21,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 POWERLEVEL9K_MODE='nerdfont-complete'
 # Powerline10k
 
-# Pure
-#fpath=("$HOME/.zfunctions" $fpath)
-#autoload -U promptinit
-#promptinit
-#prompt pure
-
-# Spaceship
-#SPACESHIP_PROMPT_ADD_NEWLINE=false
-#SPACESHIP_TIME_SHOW=true
-
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
@@ -44,7 +32,7 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -93,13 +81,16 @@ plugins=(
   gpg-agent
   osx
   ssh-agent
+  ssh-close
   terraform
+  zsh-completions
 )
 
 source $ZSH/oh-my-zsh.sh
 source /usr/local/etc/profile.d/z.sh
 
 # User configuration
+autoload -U compinit && compinit
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -131,35 +122,43 @@ export SSH_KEY_PATH="~/.ssh/rsa_id"
 #bindkey "OA" history-beginning-search-backward
 #bindkey "OB" history-beginning-search-forward
 
-alias zshrc="$EDITOR ~/.zshrc"
-alias wipe=':>'
-alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
-alias ding='echo '
-alias timestamp='date +"%s"'
-alias shutdown='sudo shutdown -h now'
-alias rsyncProd="rsync -rav prod:/var/www/html ${HOME}/Developer/senate.mn/"
-alias rmds='find . -type f -name ".DS_Store" -delete'
-
-alias sshconfig='$EDITOR ~/.ssh/config'
 alias activate='source venv/bin/activate'
+alias aliases='alias | bat -l zsh --style plain'
+alias ding='echo '
+alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
+alias hosts='sudo $EDITOR /etc/hosts'
+alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
+alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
+alias rmds='find . -type f -name ".DS_Store" -delete'
+alias rsyncProd="rsync -rav prod:/var/www/html ${HOME}/Developer/senate.mn/"
+alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+alias shutdown='sudo shutdown -h now'
+alias sshconfig='$EDITOR ~/.ssh/config'
+alias timestamp='date +"%s"'
+alias units='gunits'
+alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
+alias wipe=':>'
+alias zshrc="$EDITOR ~/.zshrc"
+
+
+alias inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
 
 export BAT_STYLE='snip'
 alias cat='bat'
-alias units='gunits'
-alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
-alias aliases='alias | bat -l zsh --style plain'
-alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
-alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
+
 
 originalSSHFS=$(which sshfs)
 sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
 unsshfs() { umount $1; rmdir ~/$1; }
 
-ssh-close() { ssh -S ~/.ssh/$1 -O exit $1; }
-
-timer() { sleep "$@" && echo ; }
 cw() { cat $(which $1); }
 dns() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; }
+
+alert() { while true; do sleep 1 && printf ; done; }
+timer() { sleep "$@" && alert; }
+
+inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --export-file="$1.png" -D --export-type=png -d "${2:-90}"; }
+
 # doesn't work :(
 # bool() { if [[ $@ ]]; then echo 'true'; else echo 'false'; fi }
 
@@ -168,6 +167,10 @@ unalias cp
 unalias mv
 unalias fd
 unalias gsd
+
+if type "go" > /dev/null; then
+    export GOPATH="$(go env GOPATH)"
+fi
 
 # To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
 source ~/.p10k.zsh
