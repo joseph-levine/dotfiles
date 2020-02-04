@@ -9,7 +9,7 @@ set -g fish_user_paths "bin" $fish_user_paths
 
 set -g fun ~/.config/fish/functions
 
-ssh-add -K
+ssh-add -K > /dev/null 2>&1
 
 alias activate='source venv/bin/activate.fish'
 alias aliases='alias | bat -l zsh --style plain'
@@ -29,3 +29,5 @@ alias units='gunits'
 alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
 alias wipe=':>'
 alias dotrc="vim ~/.config/fish/config.fish"
+
+source $HOME/.config/fish/git.fish
