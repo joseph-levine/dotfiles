@@ -9,7 +9,9 @@ set -g fish_user_paths "bin" $fish_user_paths
 
 set -g fun ~/.config/fish/functions
 
-ssh-add -K > /dev/null 2>&1
+ssh-add -K > /dev/null 2>&1 &
+
+set -Ux EDITOR "vim"
 
 alias activate='source venv/bin/activate.fish'
 alias aliases='alias | bat -l zsh --style plain'
@@ -24,10 +26,18 @@ alias rsyncProd="rsync -rav prod:/var/www/html $HOME/Developer/senate.mn/"
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias shutdown='sudo shutdown -h now'
 alias sshconfig='$EDITOR ~/.ssh/config'
+alias t='todo.sh -d ~/.todo.cfg'
 alias timestamp='date +"%s"'
 alias units='gunits'
 alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
 alias wipe=':>'
-alias dotrc="vim ~/.config/fish/config.fish"
+alias dotrc="$EDITOR ~/.config/fish/config.fish"
+alias ... 'cd ../..'
+alias .... 'cd ../../..'
+alias ..... 'cd ../../../..'
+alias ...... 'cd ../../../../..'
+alias ....... 'cd ../../../../../..'
+alias ........ 'cd ../../../../../../..'
+alias ......... 'cd ../../../../../../../..'
 
 source $HOME/.config/fish/git.fish
