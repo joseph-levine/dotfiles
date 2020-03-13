@@ -12,19 +12,4 @@ tell application "System Events"
 end tell
 EOF
 
-function virtualenv_activate() {
-    if [[ -z "$VIRTUAL_ENV" ]]; then
-        if [[ -d ./venv ]]; then
-            activate
-        fi
-    else
-        parentdir=$(dirname "$VIRTUAL_ENV")
-        if [[ "$PWD"/ != "$parentdir"/* ]]; then
-            deactivate
-        fi
-    fi
-}
-chpwd_functions+=("virtualenv_activate")
-
-sudo osascript -e $full_screen
 # vi:syntax=zsh

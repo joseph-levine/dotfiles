@@ -133,11 +133,14 @@ alias rsyncProd="rsync -rav prod:/var/www/html ${HOME}/Developer/senate.mn/"
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias shutdown='sudo shutdown -h now'
 alias sshconfig='$EDITOR ~/.ssh/config'
+alias t='todo.sh'
 alias timestamp='date +"%s"'
 alias units='gunits'
 alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
+alias vimrc="$EDITOR ~/.vimrc"
 alias wipe=':>'
 alias zshrc="$EDITOR ~/.zshrc"
+alias dotrc="zshrc"
 
 alias inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
 
@@ -179,3 +182,5 @@ case $(hostname) in
     *Emperor*) source "${HOME}/.zshrc-home" ;;
     *) ;;
 esac
+
+eval "$(direnv hook zsh)"

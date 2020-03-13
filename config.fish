@@ -5,15 +5,14 @@ set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 set -g fish_user_paths "/Users/josephle/.composer/vendor/bin" $fish_user_paths
 set -g fish_user_paths "/Users/josephle/.cargo/bin" $fish_user_paths
 set -g fish_user_paths "/Users/josephle/bin" $fish_user_paths
-set -g fish_user_paths "bin" $fish_user_paths
+set -g fish_user_paths "/Users/josephle/go/bin" $fish_user_paths
 
 set -g fun ~/.config/fish/functions
 
 ssh-add -K > /dev/null 2>&1 &
 
-set -Ux EDITOR "vim"
+set -x EDITOR "vim"
 
-alias activate='source venv/bin/activate.fish'
 alias aliases='alias | bat -l zsh --style plain'
 alias bat='bat --style=snip'
 alias ding='echo '
@@ -41,3 +40,5 @@ alias ........ 'cd ../../../../../../..'
 alias ......... 'cd ../../../../../../../..'
 
 source $HOME/.config/fish/git.fish
+
+#echo "nohup $HOME/Documents/am-here/trigger </dev/null >/dev/null 2>&1 &"
