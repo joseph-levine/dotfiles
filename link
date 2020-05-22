@@ -1,10 +1,67 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
-symlink() { ln -s "$(pwd)/${1}" "${HOME}/${1}; }
+here=$(dirname "$0")
 
-symlink .p10k.zsh
-symlink .vimrc
-symlink .zshrc
-symlink .zshrc-home
-symlink .zshrc-work
+yes='true'
+no='false'
+
+backup_existing() {
+	if [ -L "$1" ]; then
+		# ignore if already a symlink, and return false
+		echo $no
+		return
+	else
+		if [ -f "$1" ]; then
+			# move file to .backup if it exists
+			mv "$1" "${1}.backup"	
+		fi
+	fi
+	# return true
+	echo $yes
+}
+
+ln_home() {
+	dest_dir=$(realpath "${HOME}")
+	dest="${dest_dir}/${1}"
+	echo "linking $dest"
+
+	result=$(backup_existing "$dest")
+	if [ "$result" = $no ]; then
+		echo "\033[33malready linked\033[0m"
+		return
+	fi
+
+	ln -s "${here}/${1}" "$dest"
+	echo "\033[32mlinked\033[0m"
+}
+
+ln_config() {
+	dest_dir=$(realpath "${HOME}/.config/${2}/")
+	dest="${dest_dir}/${3:-$1}"
+	mkdir -p "$dest_dir"
+
+	echo "linking $dest"
+	result=$(backup_existing "$dest")
+	if [ "$result" = $no ]; then
+		echo "\033[33malready linked\033[0m"
+		return
+	fi
+
+	ln -s "${here}/${1}" "$dest"
+	echo "\033[32mlinked\033[0m"
+}
+
+ln_home '.p10k.zsh'
+ln_home '.todo.cfg'
+ln_home '.vimrc'
+ln_home '.zshrc'
+ln_home '.zshrc-home'
+ln_home '.zshrc-work'
+ln_home '.tmux.conf'
+
+ln_config 'alacritty.yml' 'alacritty'
+ln_config 'batconfig' 'bat' 'config'
+ln_config 'config.fish' 'fish'
+ln_config 'git.fish' 'fish'
+ln_config 'starship.toml' '.'
 

@@ -1,11 +1,14 @@
 # If you come from bash you might have to change your $PATH.
 export PATH="${HOME}/bin:${PATH}"
-mysqlPath='/usr/local/opt/mysql@5.7/bin'
+mysqlPath='/usr/local/opt/mysql-client/bin'
+pgPath='/usr/local/opt/libpq/bin'
 export PATH="${PATH}:${mysqlPath}"
 export PATH="${PATH}:/usr/local/sbin"
 export PATH="${PATH}:${HOME}/.composer/vendor/bin"
 export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:./bin"
+export PATH="${PATH}:${HOME}/.symfony/bin"
+export PATH="${PATH}:${pgPath}"
 #export PATH="${PATH}:${HOME}/bin"
 
 # Path to your oh-my-zsh installation.
@@ -76,7 +79,6 @@ DISABLE_UPDATE_PROMPT=true
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   colored-man-pages
-  common-aliases
   git
   gpg-agent
   osx
@@ -126,6 +128,8 @@ alias aliases='alias | bat -l zsh --style plain'
 alias ding='echo '
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
 alias hosts='sudo $EDITOR /etc/hosts'
+alias listeners='sudo lsof -iTCP -sTCP:LISTEN -n -P'
+alias ls='exa'
 alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds='find . -type f -name ".DS_Store" -delete'
@@ -163,10 +167,6 @@ inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --expor
 # doesn't work :(
 # bool() { if [[ $@ ]]; then echo 'true'; else echo 'false'; fi }
 
-unalias rm
-unalias cp
-unalias mv
-unalias fd
 unalias gsd
 
 if type "go" > /dev/null; then
@@ -184,3 +184,6 @@ case $(hostname) in
 esac
 
 eval "$(direnv hook zsh)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/vault vault

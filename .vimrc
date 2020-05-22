@@ -16,12 +16,14 @@ let g:ansible_unindent_after_newline = 1
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " NERDTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+" UltiSnips
+Plug 'SirVer/ultisnips'
 " Git
 Plug 'tpope/vim-fugitive'
 " vim defaults - todo: replace
 Plug 'tpope/vim-sensible'
 " Auto-Completion
-Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --cs-completer --rust-completer --ts-completer' }
+" Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --cs-completer --rust-completer --ts-completer' }
 call plug#end()
 
 " Functions
