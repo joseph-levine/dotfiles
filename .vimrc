@@ -54,6 +54,7 @@ com! ELearnNotes :call ELearnNotes()
 " keyboard mappings (be sparing with these!)
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>w <C-W>w
+nmap <CR> O<Esc>j
 
 " autocmds (be even more sparing with these!)
 " quit NERDTree if it's the last remaining window

@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 export PATH="${HOME}/bin:${PATH}"
 mysqlPath='/usr/local/opt/mysql-client/bin'
@@ -6,7 +13,6 @@ export PATH="${PATH}:${mysqlPath}"
 export PATH="${PATH}:/usr/local/sbin"
 export PATH="${PATH}:${HOME}/.composer/vendor/bin"
 export PATH="${PATH}:${HOME}/.cargo/bin"
-export PATH="${PATH}:./bin"
 export PATH="${PATH}:${HOME}/.symfony/bin"
 export PATH="${PATH}:${pgPath}"
 #export PATH="${PATH}:${HOME}/bin"
@@ -93,6 +99,8 @@ source /usr/local/etc/profile.d/z.sh
 # User configuration
 autoload -U compinit && compinit
 
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -110,7 +118,6 @@ export EDITOR='vim'
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/rsa_id"
 ssh-add -K >/dev/null 2>&1
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -123,7 +130,6 @@ ssh-add -K >/dev/null 2>&1
 #bindkey "OA" history-beginning-search-backward
 #bindkey "OB" history-beginning-search-forward
 
-alias activate='source venv/bin/activate'
 alias aliases='alias | bat -l zsh --style plain'
 alias ding='echo '
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
@@ -133,24 +139,21 @@ alias ls='exa'
 alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds='find . -type f -name ".DS_Store" -delete'
-alias rsyncProd="rsync -rav prod:/var/www/html ${HOME}/Developer/senate.mn/"
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
-alias shutdown='sudo shutdown -h now'
 alias sshconfig='$EDITOR ~/.ssh/config'
 alias t='todo.sh'
 alias timestamp='date +"%s"'
 alias units='gunits'
-alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
 alias vimrc="$EDITOR ~/.vimrc"
 alias wipe=':>'
 alias zshrc="$EDITOR ~/.zshrc"
 alias dotrc="zshrc"
 
 alias inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
+alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
 
 export BAT_STYLE='snip'
 alias cat='bat'
-
 
 originalSSHFS=$(which sshfs)
 sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
@@ -164,8 +167,7 @@ timer() { sleep "$@" && alert; }
 
 inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --export-file="$1.png" -D --export-type=png -d "${2:-90}"; }
 
-# doesn't work :(
-# bool() { if [[ $@ ]]; then echo 'true'; else echo 'false'; fi }
+bool() { if [[ "$@" ]]; then echo 'true'; else echo 'false'; fi }
 
 unalias gsd
 
@@ -173,8 +175,13 @@ if type "go" > /dev/null; then
     export GOPATH="$(go env GOPATH)"
 fi
 
-# To customize prompt, run `p9k_configure` or edit ~/.p10k.zsh.
-source ~/.p10k.zsh
+eval "$(direnv hook zsh)"
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/vault vault
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 hn=$(hostname)
 
 case $(hostname) in
@@ -183,7 +190,4 @@ case $(hostname) in
     *) ;;
 esac
 
-eval "$(direnv hook zsh)"
 
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/vault vault

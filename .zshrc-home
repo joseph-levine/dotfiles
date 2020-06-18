@@ -1,2 +1,3 @@
-
 # vi:syntax=zsh
+alias proxy='networksetup -setnetworkserviceenabled Proxied on && networksetup -setnetworkserviceenabled Wi-Fi off'
+alias wifi='networksetup -setnetworkserviceenabled Wi-Fi on && networksetup -setnetworkserviceenabled Proxied off'
