@@ -132,6 +132,7 @@ ssh-add -K >/dev/null 2>&1
 
 alias aliases='alias | bat -l zsh --style plain'
 alias ding='echo '
+alias dotrc="zshrc"
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
 alias hosts='sudo $EDITOR /etc/hosts'
 alias listeners='sudo lsof -iTCP -sTCP:LISTEN -n -P'
@@ -139,6 +140,7 @@ alias ls='exa'
 alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds='find . -type f -name ".DS_Store" -delete'
+alias rsync='rsync -a --info=progress2'
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias sshconfig='$EDITOR ~/.ssh/config'
 alias t='todo.sh'
@@ -147,7 +149,6 @@ alias units='gunits'
 alias vimrc="$EDITOR ~/.vimrc"
 alias wipe=':>'
 alias zshrc="$EDITOR ~/.zshrc"
-alias dotrc="zshrc"
 
 alias inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
 alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
