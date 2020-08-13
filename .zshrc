@@ -157,18 +157,15 @@ export BAT_STYLE='snip'
 alias cat='bat'
 
 originalSSHFS=$(which sshfs)
-sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
-unsshfs() { umount $1; rmdir ~/$1; }
-
-cw() { cat $(which $1); }
-dns() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; }
-
 alert() { while true; do sleep 1 && printf ; done; }
-timer() { sleep "$@" && alert; }
-
-inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --export-file="$1.png" -D --export-type=png -d "${2:-90}"; }
-
 bool() { if [[ "$@" ]]; then echo 'true'; else echo 'false'; fi }
+cw() { cat $(which $1); }
+docker-exec() { docker exec -it "${@-:test\:latest}" /bin/bash; }
+dns() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; }
+inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --export-file="$1.png" -D --export-type=png -d "${2:-90}"; }
+sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
+timer() { sleep "$@" && alert; }
+unsshfs() { umount $1; rmdir ~/$1; }
 
 unalias gsd
 
