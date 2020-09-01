@@ -99,8 +99,9 @@ source /usr/local/etc/profile.d/z.sh
 # User configuration
 autoload -U compinit && compinit
 
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
-
+if type "brew" > /dev/null; then
+	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
+fi
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
