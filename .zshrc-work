@@ -1,15 +1,2 @@
-alias deploy_prod='ssh -t prod "sudo -u www-data prod_pull"'
-alias deploy_laravel='ssh -t prod "sudo -u www-data laravel_pull"'
-alias deploy_intranet='ssh -t prod "sudo -u www-data intranet_pull"'
-alias deploy_tv='ssh -t tv-directories.senate.mn "sudo -u www-data tv_pull"'
-alias rsyncProd="rsync -rav prod:/var/www/html/ ${HOME}/Developer/senate.mn"
-
-read -r -d '' full_screen <<'EOF'
-tell application "System Events"
-	if ((count UI element of window 1 of application process "Terminal") > 2) then
-		click UI element 3 of window 1 of application process "Terminal"
-	end if
-end tell
-EOF
-
+alias sec='security unlock-keychain'
 # vi:syntax=zsh
