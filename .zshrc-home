@@ -1,3 +1,5 @@
 # vi:syntax=zsh
 alias proxy='networksetup -setnetworkserviceenabled Proxied on && networksetup -setnetworkserviceenabled Wi-Fi off'
 alias wifi='networksetup -setnetworkserviceenabled Wi-Fi on && networksetup -setnetworkserviceenabled Proxied off'
+alias work-screen="work-port 5900 $(rand 1024 $(( 2 ** 16 - 1 ))) 'vnc'"
+alias work-kube="work-port 6443 $(rand 1024 $(( 2 ** 16 - 1 )))"
