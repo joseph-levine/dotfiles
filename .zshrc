@@ -163,7 +163,6 @@ cw() { cat $(which $1); }
 docker-exec() { docker exec -it "${@-:test\:latest}" /bin/bash; }
 dns() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; }
 inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --export-file="$1.png" -D --export-type=png -d "${2:-90}"; }
-minikube-cleanup() { for m in ${TMPDIR}minikube*; do rm "$m"; done; }
 sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
 timer() { sleep "$@" && alert; }
 unsshfs() { umount $1; rmdir ~/$1; }
