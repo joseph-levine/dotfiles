@@ -185,6 +185,7 @@ eval "$(direnv hook zsh)"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/vault vault
+complete -o nospace -C /usr/local/bin/kustomize kustomize
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -195,5 +196,4 @@ case $(hostname) in
     *Emperor*) source "${HOME}/.zshrc-home" ;;
     *) ;;
 esac
-
 
