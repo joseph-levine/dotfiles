@@ -136,16 +136,22 @@ alias dotrc="zshrc"
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
 alias hosts='sudo $EDITOR /etc/hosts'
 alias listeners='sudo lsof -iTCP -sTCP:LISTEN -n -P'
-alias ls='exa'
+if type -p exa >/dev/null; then
+    alias ls='exa'
+fi
 alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds='find . -type f -name ".DS_Store" -delete'
 alias rsync='rsync -a --info=progress2'
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias sshconfig='$EDITOR ~/.ssh/config'
-alias t='todo.sh'
+if type -p todo.sh >/dev/null; then
+    alias t='todo.sh'
+fi
 alias timestamp='date +"%s"'
-alias units='gunits'
+if type -p gunits >/dev/null; then
+    alias units='gunits'
+fi
 alias vimrc="$EDITOR ~/.vimrc"
 alias wipe=':>'
 alias zshrc="$EDITOR ~/.zshrc"
@@ -154,9 +160,10 @@ alias inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
 alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
 
 export BAT_STYLE='snip'
-alias cat='bat'
+if type -p bat >/dev/null; then
+    alias cat='bat'
+fi
 
-originalSSHFS=$(which sshfs)
 alert() { while true; do sleep 1 && printf ; done; }
 bool() { if [[ "$@" ]]; then echo 'true'; else echo 'false'; fi }
 cw() { cat $(which $1); }
@@ -164,7 +171,7 @@ docker-exec() { docker exec -it "${@-:test\:latest}" /bin/bash; }
 dns() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; }
 inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --export-file="$1.png" -D --export-type=png -d "${2:-90}"; }
 minikube-cleanup() { for m in ${TMPDIR}minikube*; do rm "$m"; done; }
-sshfs() { mkdir ~/$1; $originalSSHFS $1:/ $1; }
+sshfs() { mkdir ~/$1; \sshfs $1:/ $1; }
 timer() { sleep "$@" && alert; }
 unsshfs() { umount $1; rmdir ~/$1; }
 
