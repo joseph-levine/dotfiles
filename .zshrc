@@ -152,6 +152,8 @@ alias timestamp='date +"%s"'
 if type -p gunits >/dev/null; then
     alias units='gunits'
 fi
+alias use-minikube='kubectl config use-context minikube'
+alias use-production='kubectl config use-context production'
 alias vimrc="$EDITOR ~/.vimrc"
 alias wipe=':>'
 alias zshrc="$EDITOR ~/.zshrc"
