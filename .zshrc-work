@@ -1,3 +1,4 @@
 alias sec='security show-keychain-info >/dev/null 2>&1 && echo "unlocked" || security unlock-keychain'
 security show-keychain-info >/dev/null 2>&1 || security unlock-keychain
+export SSH_CLOSE_EXCLUDES="socket-pi@josephlevinecqiuv.ddns.net:22"
 # vi:syntax=zsh
