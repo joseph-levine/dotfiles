@@ -1,4 +1,5 @@
 alias sec='security show-keychain-info >/dev/null 2>&1 && echo "unlocked" || security unlock-keychain'
+sshvm() { ssh $(vsphere vm.info "${1}.senate.mn" | grep "IP" | awk '{ print $3 }') }
 security show-keychain-info >/dev/null 2>&1 || security unlock-keychain
 export SSH_CLOSE_EXCLUDES="socket-pi@josephlevinecqiuv.ddns.net:22"
 # vi:syntax=zsh
