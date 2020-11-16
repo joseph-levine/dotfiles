@@ -88,7 +88,6 @@ plugins=(
   git
   osx
   ssh-close
-  terraform
   zsh-completions
 )
 
