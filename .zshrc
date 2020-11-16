@@ -186,8 +186,12 @@ fi
 eval "$(direnv hook zsh)"
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/vault vault
-complete -o nospace -C /usr/local/bin/kustomize kustomize
+if type -p vault >/dev/null; then
+    complete -o nospace -C /usr/local/bin/vault vault
+fi
+if type -p kustomize >/dev/null; then
+    complete -o nospace -C /usr/local/bin/kustomize kustomize
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
