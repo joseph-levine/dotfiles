@@ -95,6 +95,9 @@ source $ZSH/oh-my-zsh.sh
 source /usr/local/etc/profile.d/z.sh
 
 # User configuration
+if type -p brew >/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
 autoload -U compinit && compinit
 
 if type "brew" > /dev/null; then
