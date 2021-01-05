@@ -14,8 +14,9 @@ export PATH="${PATH}:/usr/local/sbin"
 export PATH="${PATH}:${HOME}/.composer/vendor/bin"
 export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:${HOME}/.symfony/bin"
+export PATH="${PATH}:${HOME}/.dotnet"
+export PATH="${PATH}:${HOME}/.dotnet/tools"
 export PATH="${PATH}:${pgPath}"
-#export PATH="${PATH}:${HOME}/bin"
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
@@ -115,7 +116,15 @@ fi
 #   export EDITOR='mvim'
 # fi
 export EDITOR='vim'
-export TODO="${HOME}/OneDrive/todo/todo.txt"
+TODO="${HOME}/OneDrive/todo/todo.txt"
+if [ -d $TODO ]; then
+    export TODO
+fi
+export AD_USER='josephl'
+DOTNET_ROOT="${HOME}/.dotnet"
+if [ -d $DOTNET_ROOT ]; then
+    export DOTNET_ROOT
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
