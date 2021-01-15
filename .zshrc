@@ -11,8 +11,9 @@ export PATH="${PATH}:/usr/local/sbin"
 export PATH="${PATH}:${HOME}/.composer/vendor/bin"
 export PATH="${PATH}:${HOME}/.cargo/bin"
 export PATH="${PATH}:${HOME}/.symfony/bin"
+export PATH="${PATH}:${HOME}/.dotnet"
+export PATH="${PATH}:${HOME}/.dotnet/tools"
 export PATH="${PATH}:${pgPath}"
-#export PATH="${PATH}:${HOME}/bin"
 
 # User configuration
 if type -p brew >/dev/null; then
@@ -24,7 +25,15 @@ if type "brew" > /dev/null; then
 	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
 fi
 export EDITOR='vim'
-export TODO="${HOME}/OneDrive/todo/todo.txt"
+TODO="${HOME}/OneDrive/todo/todo.txt"
+if [ -d $TODO ]; then
+    export TODO
+fi
+export AD_USER='josephl'
+DOTNET_ROOT="${HOME}/.dotnet"
+if [ -d $DOTNET_ROOT ]; then
+    export DOTNET_ROOT
+fi
 
 
 # ssh
