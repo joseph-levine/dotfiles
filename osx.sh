@@ -30,6 +30,17 @@ if [ ! -r "$HOME/.vim/autoload/plug.vim" ]; then
     vim -c PlugInstall -c qall
 fi
 
+if [ ! -r "$HOME/.gitignore" ]; then
+    ln -s "$PWD/.gitignore-global" "$HOME/.gitignore"
+fi
+
+if [ ! -L "$HOME/.config/fish" ]; then
+    if [ -d "$HOME/.config/fish" ]; then
+        rm -r "$HOME/.config/fish"
+    fi
+    ln -s "$PWD/fish" "$HOME/.config/fish"
+fi
+
 # see https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 # open save panel
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -47,10 +58,12 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # scroll the correct direction
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
-# reboot on power failure
+# reboot on power failure (echo in case sudo asks for a pass)
+echo "reboot on powerfail"
 sudo pmset -a autorestart 1
 
-# or on freeze
+# or on freeze (echo in case sudo asks for a pass)
+echo "reboot on freeze"
 sudo systemsetup -setrestartfreeze on
 
 # get rid of shadow in screenshots
@@ -99,3 +112,10 @@ printf "git email: "
 read -r email;
 git config --global user.email "$email"
 git config --global core.excludesFile "$HOME/.gitignore"
+
+printf "sudo set default shell"
+if type fish; then
+    which fish | sudo tee -a /etc/shells
+    me=$(who -m | awk '{print $1}')
+    sudo chsh -u "$me" -s "$(which fish)"
+fi
