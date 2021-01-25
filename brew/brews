@@ -1,0 +1,14 @@
+bat
+fish
+helm
+htop
+kubernetes-cli
+kustomize
+nmap
+python
+rsync
+shellcheck
+skaffold
+sops
+vim
+zsh

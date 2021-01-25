@@ -93,3 +93,9 @@ defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
 
+# git - I'm me!
+git config --global user.name "Joseph Levine"
+printf "git email: "
+read -r email;
+git config --global user.email "$email"
+git config --global core.excludesFile "$HOME/.gitignore"
