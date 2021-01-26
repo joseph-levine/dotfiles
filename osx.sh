@@ -99,5 +99,3 @@ printf "git email: "
 read -r email;
 git config --global user.email "$email"
 git config --global core.excludesFile "$HOME/.gitignore"
-
-"$PWD/krew.sh"
