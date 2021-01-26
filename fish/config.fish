@@ -1,14 +1,24 @@
 
 # can't be in global because of interpolation
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
-set -g fish_user_paths "$HOME/.composer/vendor/bin" $fish_user_paths
-set -g fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
-set -g fish_user_paths "$HOME/bin" $fish_user_paths
+if test -d "$HOME/.composer/vendor/bin"
+    set -g fish_user_paths "$HOME/.composer/vendor/bin" $fish_user_paths
+end
+if test -d "$HOME/.krew/bin"
+    set -g fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
+end
+if test -d "$HOME/.krew/bin"
+    set -g fish_user_paths "$HOME/bin" $fish_user_paths
+end
+if test -d "$HOME/.krew/bin"
+    set -g fish_user_paths "$HOME/.krew/bin" $fish_user_paths
+end
 set -g fun ~/.config/fish/functions
 
 ssh-add -K > /dev/null 2>&1 &
 
 set -x EDITOR "vim"
+set -x AD_USER 'josephl'
 
 alias aliases='alias | bat -l zsh --style plain'
 alias cat='bat --style=plain'
@@ -25,6 +35,7 @@ alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds='find . -type f -name ".DS_Store" -delete'
 alias rsync='rsync --info=progress2'
+alias sec='security show-keychain-info >/dev/null 2>&1 && echo "unlocked" || security unlock-keychain'
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias sshconfig='$EDITOR ~/.ssh/config'
 if type -p todo.sh >/dev/null
