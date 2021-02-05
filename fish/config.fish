@@ -4,10 +4,10 @@ set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 if test -d "$HOME/.composer/vendor/bin"
     set -g fish_user_paths "$HOME/.composer/vendor/bin" $fish_user_paths
 end
-if test -d "$HOME/.krew/bin"
+if test -d "$HOME/.cargo/bin"
     set -g fish_user_paths "$HOME/.cargo/bin" $fish_user_paths
 end
-if test -d "$HOME/.krew/bin"
+if test -d "$HOME/bin"
     set -g fish_user_paths "$HOME/bin" $fish_user_paths
 end
 if test -d "$HOME/.krew/bin"
@@ -56,3 +56,8 @@ alias ........ 'cd ../../../../../../..'
 alias ......... 'cd ../../../../../../../..'
 
 source $HOME/.config/fish/git.fish
+
+set setbg $HOME/bin/term-background
+if test -x $setbg
+    sh -c "$setbg none >/dev/null 2>&1 </dev/null &"
+end
