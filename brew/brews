@@ -1,7 +1,10 @@
 bat
+direnv
 exa
 fish
+fd
 gnu-units
+git
 helm
 htop
 kubernetes-cli
@@ -9,6 +12,7 @@ kustomize
 nmap
 python
 rsync
+ruby
 shellcheck
 skaffold
 sops
