@@ -5,11 +5,11 @@ fd
 fish
 git
 gnu-units
-helm
 htop
 kubernetes-cli
 kustomize
 nmap
+poetry
 python
 rsync
 ruby
