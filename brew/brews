@@ -1,10 +1,10 @@
 bat
 direnv
 exa
-fish
 fd
-gnu-units
+fish
 git
+gnu-units
 helm
 htop
 kubernetes-cli
