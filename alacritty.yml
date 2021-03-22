@@ -47,10 +47,10 @@ key_bindings:
   - { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
   - { key: T,        mods: Command,       chars: "\x01\x63" }
   - { key: W,        mods: Command,       chars: "\x01\x78" }
-  - { key: F1,       mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=222222'"] } }
-  - { key: F2,       mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=003333'"] } }
-  - { key: F3,       mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=330033'"] } }
-  - { key: F4,       mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=333300'"] } }
-  - { key: F5,       mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=330000'"] } }
-  - { key: F6,       mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=003311'"] } }
-  - { key: F7,       mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=001133'"] } }
+  - { key: F13,      mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=222222'"] } }
+  - { key: F14,      mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=003333'"] } }
+  - { key: F15,      mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=330033'"] } }
+  - { key: F16,      mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=333300'"] } }
+  - { key: F17,      mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=330000'"] } }
+  - { key: F18,      mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=003311'"] } }
+  - { key: F19,      mods: Shift,   command: { program: "tmux" args: ["select-pane", "-P", "'bg=001133'"] } }
