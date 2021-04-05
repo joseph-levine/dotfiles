@@ -1,4 +1,3 @@
-
 # can't be in global because of interpolation
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 if test -d "$HOME/.composer/vendor/bin"
@@ -14,12 +13,6 @@ if test -d "$HOME/.krew/bin"
     set -g fish_user_paths "$HOME/.krew/bin" $fish_user_paths
 end
 set -g fun ~/.config/fish/functions
-if test -d "$HOME/Library/Logs"
-    mkdir -p "$HOME/Library/Logs/local"
-    set -gx LOG_DIR "$HOME/Library/Logs/local"
-else if test -d "/var/log"
-    set -gx LOG_DIR /var/log
-end
 
 ssh-add -K > /dev/null 2>&1 &
 
@@ -63,15 +56,7 @@ alias ......... 'cd ../../../../../../../..'
 
 source $HOME/.config/fish/git.fish
 
-bind \e\[25\~ term-reset
-bind \e\[26\~ term-cyan
-bind \e\[28\~ term-magenta
-bind \e\[29\~ term-yellow
-bind \e\[31\~ term-red
-bind \e\[32\~ term-green
-bind \e\[33\~ term-blue
-
-set setbg $HOME/bin/term-background
-if test -x $setbg
-    sh -c "$setbg none >/dev/null 2>&1 </dev/null &"
-end
+#set setbg $HOME/bin/term-background
+#if test -x $setbg
+#    sh -c "$setbg none >/dev/null 2>&1 </dev/null &"
+#end
