@@ -33,7 +33,6 @@ end
 alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds='find . -type f -name ".DS_Store" -delete'
-alias rsync='rsync --info=progress2'
 alias sec='security show-keychain-info >/dev/null 2>&1 && echo "unlocked" || security unlock-keychain'
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias sshconfig='$EDITOR ~/.ssh/config'
