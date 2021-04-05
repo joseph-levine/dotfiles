@@ -19,7 +19,38 @@ font:
     y: 5
   use_thin_strokes: true
 
+colors:
+  primary:
+    background: '0x222222'
+    foreground: '0xffffff'
+  normal:
+    black: '0x000000'
+    blue: '0x0820ae'
+    cyan: '0x27a3b0'
+    green: '0x25a120'
+    magenta: '0xae27af'
+    red: '0x95100e'
+    white: '0xbebebe'
+    yellow: '0x979623'
+  bright:
+    black: '0x666666'
+    blue: '0x132efa'
+    cyan: '0x36e3e4'
+    green: '0x30d42a'
+    magenta: '0xe132e2'
+    red: '0xe01f1d'
+    white: '0xffffff'
+    yellow: '0xe4e234'
+
+
 key_bindings:
   - { key: N,        mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
   - { key: T,        mods: Command,       chars: "\x01\x63" }
   - { key: W,        mods: Command,       chars: "\x01\x78" }
+  - { key: F13,      mods: Shift,   command: { program: "tmux", args: ["select-pane", "-P", "'bg=222222'"] } }
+  - { key: F14,      mods: Shift,   command: { program: "tmux", args: ["select-pane", "-P", "'bg=003333'"] } }
+  - { key: F15,      mods: Shift,   command: { program: "tmux", args: ["select-pane", "-P", "'bg=330033'"] } }
+  - { key: F16,      mods: Shift,   command: { program: "tmux", args: ["select-pane", "-P", "'bg=333300'"] } }
+  - { key: F17,      mods: Shift,   command: { program: "tmux", args: ["select-pane", "-P", "'bg=330000'"] } }
+  - { key: F18,      mods: Shift,   command: { program: "tmux", args: ["select-pane", "-P", "'bg=003311'"] } }
+  - { key: F19,      mods: Shift,   command: { program: "tmux", args: ["select-pane", "-P", "'bg=001133'"] } }
