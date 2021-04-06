@@ -9,9 +9,6 @@ end
 if test -d "$HOME/bin"
     set -g fish_user_paths "$HOME/bin" $fish_user_paths
 end
-if test -d "$HOME/.krew/bin"
-    set -g fish_user_paths "$HOME/.krew/bin" $fish_user_paths
-end
 set -g fun ~/.config/fish/functions
 
 ssh-add -K > /dev/null 2>&1 &
@@ -26,6 +23,9 @@ alias dotrc="$EDITOR ~/.config/fish/config.fish"
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
 alias hosts="sudo $EDITOR /etc/hosts"
 alias listeners='sudo lsof -iTCP -sTCP:LISTEN -n -P'
+if type -p kubectl >/dev/null
+    alias ka='kubectl apply -f'
+end
 alias usr-ports-in-use="lsof -iTCP -sTCP:LISTEN -n -P | awk 'FNR >= 2 { print \$9 }' | cut -f 2 -d ':' | sort -n -u"
 if type -p exa >/dev/null
     alias ls='exa'
