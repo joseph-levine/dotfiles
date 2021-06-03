@@ -61,3 +61,4 @@ source $HOME/.config/fish/git.fish
 #end
 
 direnv hook fish | source
+eval (/opt/homebrew/bin/brew shellenv)
