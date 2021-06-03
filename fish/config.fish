@@ -59,3 +59,5 @@ source $HOME/.config/fish/git.fish
 #if test -x $setbg
 #    sh -c "$setbg none >/dev/null 2>&1 </dev/null &"
 #end
+
+direnv hook fish | source
