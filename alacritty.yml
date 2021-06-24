@@ -47,4 +47,4 @@ key_bindings:
   - { key: N,    mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
 
 shell:
-  program: /usr/local/bin/tmux
+  program: /opt/homebrew/bin/tmux

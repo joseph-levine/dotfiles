@@ -14,7 +14,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " NERDTree
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " UltiSnips
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 " Git
 Plug 'tpope/vim-fugitive'
 " vim defaults - todo: replace

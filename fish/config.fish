@@ -1,3 +1,4 @@
+eval (/opt/homebrew/bin/brew shellenv)
 # can't be in global because of interpolation
 set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 if test -d "$HOME/.composer/vendor/bin"
@@ -16,6 +17,7 @@ ssh-add -K > /dev/null 2>&1 &
 set -x EDITOR "vim"
 set -x AD_USER 'josephl'
 
+alias abrew='arch -arm64 brew'
 alias aliases='alias | bat -l zsh --style plain'
 alias cat='bat --style=plain'
 alias ding='echo '
@@ -61,4 +63,3 @@ source $HOME/.config/fish/git.fish
 #end
 
 direnv hook fish | source
-eval (/opt/homebrew/bin/brew shellenv)

@@ -1,21 +1,14 @@
 # If you come from bash you might have to change your $PATH.
-export PATH="${HOME}/bin:${PATH}"
-mysqlPath='/usr/local/opt/mysql-client/bin'
-pgPath='/usr/local/opt/libpq/bin'
-export PATH="${PATH}:${mysqlPath}"
-export PATH="${PATH}:/usr/local/sbin"
-export PATH="${PATH}:${HOME}/.composer/vendor/bin"
-export PATH="${PATH}:${HOME}/.cargo/bin"
-export PATH="${PATH}:${HOME}/.symfony/bin"
-export PATH="${PATH}:${HOME}/.dotnet"
-export PATH="${PATH}:${HOME}/.dotnet/tools"
-export PATH="${PATH}:${pgPath}"
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-export ZSH=$HOME/.oh-my-zsh
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/work/.oh-my-zsh"
 
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
-
-plugins=(git)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -76,35 +69,38 @@ HIST_STAMPS="yyyy-mm-dd"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-if type -p brew >/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
-fi
-autoload -U compinit && compinit
 
-if type "brew" > /dev/null; then
-	export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl)"
-fi
-export EDITOR='vim'
-TODO="${HOME}/OneDrive/todo/todo.txt"
-if [ -d $TODO ]; then
-    export TODO
-fi
-export AD_USER='josephl'
-DOTNET_ROOT="${HOME}/.dotnet"
-if [ -d $DOTNET_ROOT ]; then
-    export DOTNET_ROOT
-fi
+# export MANPATH="/usr/local/man:$MANPATH"
 
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-# ssh
-ssh-add -K >/dev/null 2>&1
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-alias aliases='alias | bat -l zsh --style plain'
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias aliases='alias | cat'
 alias ding='echo '
 alias dotrc="zshrc"
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
@@ -114,7 +110,7 @@ alias usr-ports-in-use="lsof -iTCP -sTCP:LISTEN -n -P | awk 'FNR >= 2 { print \$
 if type -p exa >/dev/null; then
     alias ls='exa'
 fi
-alias nods='find ~ -type f -name ".DS_Store" -delete'
+alias nods="find ${HOME} -type f -name '.DS_Store' -delete"
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds='nods'
 alias rsync='rsync -a --info=progress2'
@@ -131,11 +127,17 @@ alias vimrc="$EDITOR ~/.vimrc"
 alias wipe=':>'
 alias zshrc="$EDITOR ~/.zshrc"
 
-alias inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
-alias vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
+inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
+if [ -x "$inkscape" ]; then
+    alias inkscape=$inkscape
+fi
+vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
+if [ -x "$vboxmanage" ]; then
+    alias vboxmanage=$vboxmanage
+fi
 
-export BAT_STYLE='snip'
 if type -p bat >/dev/null; then
+    export BAT_STYLE='snip'
     alias cat='bat'
 fi
 
@@ -143,17 +145,18 @@ alert() { while true; do sleep 1 && printf ; done; }
 bool() { if [[ "$@" ]]; then echo 'true'; else echo 'false'; fi }
 cw() { cat $(which $1); }
 docker-exec() { docker exec -it "${@-:test\:latest}" /bin/bash; }
-dns() { sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; }
+dns() {
+    sudo brew services restart dnsmasq
+    sudo dscacheutil -flushcache
+    sudo killall -HUP mDNSResponder;
+}
 inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --export-file="$1.png" -D --export-type=png -d "${2:-90}"; }
-minikube-cleanup() { for m in ${TMPDIR}minikube*; do rm "$m"; done; }
 sshfs() { mkdir ~/$1; \sshfs $1:/ $1; }
 timer() { sleep "$@" && alert; }
 unsshfs() { umount $1; rmdir ~/$1; }
 
-if type -p go > /dev/null; then
-    export GOPATH="$(go env GOPATH)"
-fi
 
 if type -p direnv > /dev/null; then
-    #eval "$(direnv hook zsh)"
+    eval "$(direnv hook zsh)"
 fi
+

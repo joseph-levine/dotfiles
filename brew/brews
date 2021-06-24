@@ -6,15 +6,11 @@ fish
 git
 gnu-units
 htop
-kubernetes-cli
-kustomize
 nmap
 poetry
 python
 rsync
 ruby
 shellcheck
-skaffold
-sops
 vim
 zsh
