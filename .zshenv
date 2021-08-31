@@ -1,5 +1,4 @@
 . "$HOME/.cargo/env"
-eval $(/opt/homebrew/bin/brew shellenv)
 if [ -r "${HOME}/.composer/vendor/bin" ]; then
     export PATH="${PATH}:${HOME}/.composer/vendor/bin"
 fi

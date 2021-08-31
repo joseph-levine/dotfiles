@@ -27,6 +27,9 @@ call plug#end()
 " Settings
 let g:is_posix = 1
 set fixendofline
+set ttymouse=xterm2
+set mouse=nv
+set shortmess=ilnxtToO
 
 " Leader
 let mapleader = "\<space>"
