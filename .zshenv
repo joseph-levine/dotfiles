@@ -14,3 +14,5 @@ if [ -d "$DOTNET_ROOT" ]; then
     export PATH="${PATH}:${DOTNET_ROOT}"
     export PATH="${PATH}:${DOTNET_ROOT}/tools"
 fi
+SHELL_SESSIONS_DISABLE=1
+export SHELL_SESSIONS_DISABLE
