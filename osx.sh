@@ -119,3 +119,7 @@ if type fish; then
     me=$(who -m | awk '{print $1}')
     sudo chsh -u "$me" -s "$(which fish)"
 fi
+
+echo "cloning dirs..."
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
