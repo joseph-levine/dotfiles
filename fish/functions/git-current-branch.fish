@@ -7,10 +7,10 @@ function git-current-branch
             return
         end
         set ref (command git rev-parse --short HEAD 2>/dev/null)
-	set git_status $status
-	if test $git_status != 0
+    set git_status $status
+    if test $git_status != 0
             return
-	end
+    end
     end
     echo $ref | sed 's/^refs\/heads\///'
 end

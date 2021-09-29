@@ -13,8 +13,6 @@ end
 
 set -g fun ~/.config/fish/functions
 
-ssh-add -K > /dev/null 2>&1 &
-
 set -x EDITOR "vim"
 if type -p n >/dev/null
     set -x N_PREFIX "$HOME/.n"
@@ -28,11 +26,11 @@ end
 alias aliases='alias | bat -l zsh --style plain'
 alias cat='bat --style=plain'
 if test (uname) = 'Darwin' && test -n "$ALACRITTY_LOG"
-	alias ding='osascript -e "beep"'
+    alias ding='osascript -e "beep"'
 else if type -p tput >/dev/null
-	alias ding='tput bel'
+    alias ding='tput bel'
 else 
-	alias ding='echo '
+    alias ding='echo '
 end
 alias dotrc="$EDITOR ~/.config/fish/config.fish"
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
