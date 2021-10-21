@@ -45,6 +45,9 @@ if type -p exa >/dev/null
     alias ll='ls -lbg'
     alias lll='ll -@ --git'
 end
+if type -p tput >/dev/null
+    alias mtr='TERM=vt220 sudo mtr'
+end
 if type -p watch >/dev/null
     alias nods='watch -n300 find ~ -type f -name ".DS_Store" -delete'
 end

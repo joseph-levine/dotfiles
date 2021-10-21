@@ -58,6 +58,12 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 # scroll the correct direction
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
+# hide menu bar
+defaults write NSGlobalDomain _HIHideMenuBar -bool true
+
+# reset spotlight position
+defaults write com.apple.Spotlight userHasMovedWindow -bool false
+
 # reboot on power failure (echo in case sudo asks for a pass)
 echo "reboot on powerfail"
 sudo pmset -a autorestart 1
