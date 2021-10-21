@@ -102,21 +102,50 @@ export EDITOR='vim'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias aliases='alias | cat'
-alias ding='echo '
+if type -p bat >/dev/null; then
+    export BAT_STYLE='snip'
+    alias cat='bat'
+fi
+if [ $(uname) = 'Darwin' ] && [ -n "$ALACRITTY_LOG" ]; then
+    alias ding='osascript -e "beep"'
+elif type -p tput >/dev/null; then
+    alias ding='tput bel'
+else
+    alias ding='echo '
+fi
 alias dotrc="zshrc"
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
 alias hosts='sudo $EDITOR /etc/hosts'
+if type -p kubectl >/dev/null; then
+    alias ka='kubectl apply -f'
+fi
+inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
+if [ -x "$inkscape" ]; then
+    alias inkscape=$inkscape
+    inkscape-png() {
+        /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" \
+            --export-file="$1.png" \
+            -D \
+            --export-type=png \
+            -d "${2:-90}"
+    }
+fi
 alias listeners='sudo lsof -iTCP -sTCP:LISTEN -n -P'
-alias usr-ports-in-use="lsof -iTCP -sTCP:LISTEN -n -P | awk 'FNR >= 2 { print \$9 }' | cut -f 2 -d ':' | sort -n -u"
 if type -p exa >/dev/null; then
     alias ls='exa'
+    alias ll='ls -lbg'
+    alias lll='ls -@ --git'
 fi
-alias nods="find ${HOME} -type f -name '.DS_Store' -delete"
+if type -p mtr >/dev/null; then
+    alias mtr='TERM=vt220 sudo mtr'
+fi
+if type -p watch >/dev/null; then
+    alias nods="watch -n300 find $HOME -type f -name '.DS_Store' -delete"
+fi
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
-alias rmds='nods'
-alias rsync='rsync -a --info=progress2'
+alias rmds="find $HOME -type f -name '.DS_Store' -delete"
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
-alias sshconfig='$EDITOR ~/.ssh/config'
+alias sshconfig="$EDITOR ~/.ssh/config"
 if type -p todo.sh >/dev/null; then
     alias t='todo.sh'
 fi
@@ -124,34 +153,22 @@ alias timestamp='date +"%s"'
 if type -p gunits >/dev/null; then
     alias units='gunits'
 fi
-alias vimrc="$EDITOR ~/.vimrc"
-alias wipe=':>'
-alias zshrc="$EDITOR ~/.zshrc"
-
-inkscape='/Applications/Inkscape.app/Contents/MacOS/inkscape'
-if [ -x "$inkscape" ]; then
-    alias inkscape=$inkscape
-fi
+alias usr-ports-in-use="lsof -iTCP -sTCP:LISTEN -n -P | awk 'FNR >= 2 { print \$9 }' | cut -f 2 -d ':' | sort -n -u"
 vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
 if [ -x "$vboxmanage" ]; then
     alias vboxmanage=$vboxmanage
 fi
+alias vimrc="$EDITOR ~/.vimrc"
+alias wipe=':>'
+alias zshrc="$EDITOR ~/.zshrc"
 
-if type -p bat >/dev/null; then
-    export BAT_STYLE='snip'
-    alias cat='bat'
-fi
-
-alert() { while true; do sleep 1 && printf ; done; }
-bool() { if [[ "$@" ]]; then echo 'true'; else echo 'false'; fi }
-cw() { cat $(which $1); }
-docker-exec() { docker exec -it "${@-:test\:latest}" /bin/bash; }
+cw() { f=$(which "$1"); cat "$f"; }
+docker-ex() { docker exec -it "${1}" /bin/sh -c 'if [ -x /bin/bash ]; then /bin/bash; else /bin/sh; fi'; }
 dns() {
     sudo brew services restart dnsmasq
     sudo dscacheutil -flushcache
     sudo killall -HUP mDNSResponder;
 }
-inkscape-png() { /Applications/Inkscape.app/Contents/MacOS/inkscape "$1" --export-file="$1.png" -D --export-type=png -d "${2:-90}"; }
 sshfs() { mkdir ~/$1; \sshfs $1:/ $1; }
 timer() { sleep "$@" && alert; }
 unsshfs() { umount $1; rmdir ~/$1; }
@@ -160,4 +177,3 @@ unsshfs() { umount $1; rmdir ~/$1; }
 if type -p direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
-

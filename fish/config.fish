@@ -23,8 +23,8 @@ if type -p n >/dev/null
     set -g fish_user_paths "$n_bins" $fish_user_paths
 end
 
-alias aliases='alias | bat -l zsh --style plain'
-alias cat='bat --style=plain'
+alias aliases='alias | cat'
+alias cat='bat --style=plain -P'
 if test (uname) = 'Darwin' && test -n "$ALACRITTY_LOG"
     alias ding='osascript -e "beep"'
 else if type -p tput >/dev/null
@@ -45,7 +45,7 @@ if type -p exa >/dev/null
     alias ll='ls -lbg'
     alias lll='ll -@ --git'
 end
-if type -p tput >/dev/null
+if type -p mtr >/dev/null
     alias mtr='TERM=vt220 sudo mtr'
 end
 if type -p watch >/dev/null
