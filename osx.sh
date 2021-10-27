@@ -26,12 +26,12 @@ fi
 
 if [ ! -r "$HOME/.vim/autoload/plug.vim" ]; then
     curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    ln -s "$PWD/.vimrc" "$HOME/.vimrc"
+    ln -s "$PWD/vimrc" "$HOME/.vimrc"
     vim -c PlugInstall -c qall
 fi
 
 if [ ! -r "$HOME/.gitignore" ]; then
-    ln -s "$PWD/.gitignore-global" "$HOME/.gitignore"
+    ln -s "$PWD/global.gitignore" "$HOME/.gitignore"
 fi
 
 if [ ! -L "$HOME/.config/fish" ]; then
