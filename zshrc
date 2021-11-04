@@ -141,7 +141,7 @@ alias listeners='sudo lsof -iTCP -sTCP:LISTEN -n -P'
 if type -p exa >/dev/null; then
     alias ls='exa'
     alias ll='ls -lbg'
-    alias lll='ls -lbg@ --git'
+    alias lll='ls -labg@ --git'
 fi
 if type -p mtr >/dev/null; then
     alias mtr='TERM=vt220 sudo mtr'

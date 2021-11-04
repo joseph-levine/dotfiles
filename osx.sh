@@ -41,6 +41,12 @@ if [ ! -L "$HOME/.config/fish" ]; then
     ln -s "$PWD/fish" "$HOME/.config/fish"
 fi
 
+if [ ! -r "$HOME/.config/homebrew/explicit" ]; then
+    mkdir -p "$HOME/.config/homebrew"
+    rm -f "$HOME/.config/homebrew/explicit"
+    ln -s "$PWD/explicit" "$HOME/.config/homebrew/explicit"
+fi
+
 # see https://github.com/mathiasbynens/dotfiles/blob/main/.macos
 # open save panel
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
