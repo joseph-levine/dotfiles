@@ -16,7 +16,7 @@ export ZSH="${HOME}/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -78,7 +78,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z)
+plugins=(direnv git vi-mode z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -141,7 +141,7 @@ alias listeners='sudo lsof -iTCP -sTCP:LISTEN -n -P'
 if type -p exa >/dev/null; then
     alias ls='exa'
     alias ll='ls -lbg'
-    alias lll='ls -@ --git'
+    alias lll='ls -lbg@ --git'
 fi
 if type -p mtr >/dev/null; then
     alias mtr='TERM=vt220 sudo mtr'
