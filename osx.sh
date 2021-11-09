@@ -27,6 +27,7 @@ fi
 if [ ! -r "$HOME/.vim/autoload/plug.vim" ]; then
     curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ln -s "$PWD/vimrc" "$HOME/.vimrc"
+    ln -s "$PWD/idea.vimrc" "$HOME/.ideavimrc"
     vim -c PlugInstall -c qall
 fi
 
