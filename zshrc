@@ -78,7 +78,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(direnv git vi-mode z)
+plugins=(direnv git ssh-close vi-mode z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -170,7 +170,15 @@ alias wipe=':>'
 alias zshrc="$EDITOR ~/.zshrc"
 
 cw() { f=$(which "$1"); cat "$f"; }
-docker-ex() { docker exec -it "${1}" /bin/sh -c 'if [ -x /bin/bash ]; then /bin/bash; else /bin/sh; fi'; }
+exdocker() { docker exec -it "${1}" /bin/sh -c 'if [ -x /bin/bash ]; then /bin/bash; else /bin/sh; fi'; }
+alias ex-account='exdocker account'
+alias ex-admin='exdocker admin'
+alias ex-main='exdocker main'
+alias ex-nginx='exdocker nginx'
+alias ex-queue='exdocker queue'
+alias ex-redis='exdocker redis'
+alias ex-mysql='exdocker mysql'
+alias ex-maihog='exdocker mailhog'
 dns() {
     sudo brew services restart dnsmasq
     sudo dscacheutil -flushcache
