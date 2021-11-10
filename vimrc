@@ -30,15 +30,11 @@ Plug 'tpope/vim-sensible'
 Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
+source ~/.shared.vimrc
 " Settings
-let g:is_posix = 1
-set fixendofline
 set ttymouse=xterm2
 set mouse=nv
 set shortmess=ilnxtToO
-
-" Leader
-let mapleader = "\<space>"
 
 " Commands
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"
@@ -49,7 +45,6 @@ com! TrimTrailingWhitespace :%s/\s\+$//e
 map <C-n> :NERDTreeToggle<CR>
 map <Leader>w <C-W>w
 
-vnoremap <Leader>64 c<c-r>=system('base64 --decode', @")<cr><esc>
 noremap <Leader>y "*y
 noremap <Leader>p "*p
 
