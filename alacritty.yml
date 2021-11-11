@@ -24,7 +24,7 @@ env:
 
 colors:
   primary:
-    background: '0x222222'
+    background: '0x111111'
     foreground: '0xffffff'
   normal:
     black: '0x000000'

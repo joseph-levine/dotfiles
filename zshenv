@@ -35,7 +35,14 @@ fi
 # n (node)
 N_PREFIX="$HOME/.n"
 if [ -d "$N_PREFIX" ]; then
+    export N_PREFIX
     PATH="$PATH:$N_PREFIX/bin"
+fi
+
+# vmware
+vmware="/Applications/VMware Fusion Tech Preview.app/Contents/Library"
+if [ -d "$vmware" ]; then
+    PATH="$PATH:$vmware"
 fi
 
 # macos
