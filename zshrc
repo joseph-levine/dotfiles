@@ -7,7 +7,9 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-eval $(/opt/homebrew/bin/brew shellenv)
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval $(/opt/homebrew/bin/brew shellenv)
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
@@ -113,7 +115,10 @@ if type -p bat >/dev/null; then
     export BAT_STYLE='snip'
     alias cat='bat'
 fi
-if [ $(uname) = 'Darwin' ] && [ -n "$ALACRITTY_LOG" ]; then
+if [ $(uname) = 'Darwin' ] && [ -n "$ALACRITTY_SOCKET" ]; then
+    if ! type -p alacritty >/dev/null; then
+        alias alacritty="/Applications/Alacritty.app/Contents/MacOS/alacritty"
+    fi
     alias ding='osascript -e "beep"'
 elif type -p tput >/dev/null; then
     alias ding='tput bel'
@@ -149,10 +154,12 @@ fi
 if type -p watch >/dev/null; then
     alias nods="watch -n300 find $HOME -type f -name '.DS_Store' -delete"
 fi
+alias mktg='cd $(mktemp -d) && git init'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds="find $HOME -type f -name '.DS_Store' -delete"
+alias rmtg='p=${PWD:P}; if [[ $p = $TMPDIR/* ]]; then printf "remove %s?" "$p"; read -r confirm; case $confirm in [Yy]* ) cd "$HOME" || exit; rm -rf "$p";; *) :;; esac; fi'
 alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
-alias sshconfig="$EDITOR ~/.ssh/config"
+alias sshconfig="$EDITOR $HOME/.ssh/config"
 if type -p todo.sh >/dev/null; then
     alias t='todo.sh'
 fi
@@ -161,15 +168,16 @@ if type -p gunits >/dev/null; then
     alias units='gunits'
 fi
 alias usr-ports-in-use="lsof -iTCP -sTCP:LISTEN -n -P | awk 'FNR >= 2 { print \$9 }' | cut -f 2 -d ':' | sort -n -u"
-vboxmanage='/Applications/VirtualBox.app/Contents/MacOS/VBoxManage'
-if [ -x "$vboxmanage" ]; then
-    alias vboxmanage=$vboxmanage
-fi
-alias vimrc="$EDITOR ~/.vimrc"
+alias vimrc="$EDITOR $HOME/.vimrc"
 alias wipe=':>'
-alias zshrc="$EDITOR ~/.zshrc"
+alias zshrc="$EDITOR HOME/.zshrc"
 
 cw() { f=$(which "$1"); cat "$f"; }
+dns() {
+    sudo brew services restart dnsmasq
+    sudo dscacheutil -flushcache
+    sudo killall -HUP mDNSResponder;
+}
 exdocker() { docker exec -it "${1}" /bin/sh -c 'if [ -x /bin/bash ]; then /bin/bash; else /bin/sh; fi'; }
 alias ex-account='exdocker account'
 alias ex-admin='exdocker admin'
@@ -179,19 +187,13 @@ alias ex-queue='exdocker queue'
 alias ex-redis='exdocker redis'
 alias ex-mysql='exdocker mysql'
 alias ex-maihog='exdocker mailhog'
-dns() {
-    sudo brew services restart dnsmasq
-    sudo dscacheutil -flushcache
-    sudo killall -HUP mDNSResponder;
-}
-sshfs() { mkdir ~/$1; \sshfs $1:/ $1; }
+sshfs() { mkdir "$HOME/$1"; \sshfs "$1":/ "$HOME/$1"; }
 timer() { sleep "$@" && alert; }
-unsshfs() { umount $1; rmdir ~/$1; }
-
+unsshfs() { umount "$1"; rmdir "$1"; }
 
 if type -p direnv > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"
