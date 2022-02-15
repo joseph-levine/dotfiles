@@ -27,6 +27,7 @@ fi
 if [ ! -r "$HOME/.vim/autoload/plug.vim" ]; then
     curl -fLo "$HOME/.vim/autoload/plug.vim" --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     ln -s "$PWD/vimrc" "$HOME/.vimrc"
+    ln -s "$PWD/shared.vimrc" "$HOME/.shared.vimrc"
     ln -s "$PWD/idea.vimrc" "$HOME/.ideavimrc"
     vim -c PlugInstall -c qall
 fi
@@ -126,12 +127,12 @@ read -r email;
 git config --global user.email "$email"
 git config --global core.excludesFile "$HOME/.gitignore"
 
-printf "sudo set default shell"
-if type fish; then
-    which fish | sudo tee -a /etc/shells
-    me=$(who -m | awk '{print $1}')
-    sudo chsh -u "$me" -s "$(which fish)"
-fi
+#printf "sudo set default shell"
+#if type fish; then
+#    which fish | sudo tee -a /etc/shells
+#    me=$(who -m | awk '{print $1}')
+#    sudo chsh -u "$me" -s "$(which fish)"
+#fi
 
 echo "cloning dirs..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
