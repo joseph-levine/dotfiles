@@ -16,12 +16,15 @@ hadolint
 htop
 jq
 kubernetes-cli
+lazydocker
+lazygit
 mysql-client
 n
 nmap
 platformio
 poetry
 python@3.9
+python@3.10
 qmk
 rsync
 ruby-build
@@ -31,7 +34,6 @@ shfmt
 terraform
 tmux
 vim
-watson
 yq
 z
 zsh
