@@ -49,7 +49,7 @@ colors:
 key_bindings:
   - { key: D, mods: Command, chars: "\x02\x25"}
   - { key: D, mods: Command|Shift, chars: "\x02\x22"}
-  #- { key: N,    mods: Command, command: { program: "open", args: ["-nb", "io.alacritty"] } }
+  - { key: N, mods: Command, action: CreateNewWindow }
 
 shell:
   program: /opt/homebrew/bin/tmux
