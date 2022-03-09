@@ -137,3 +137,17 @@ git config --global core.excludesFile "$HOME/.gitignore"
 echo "cloning dirs..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+echo "now,
+* hide the menu bar (not possible via code)
+* install oh-my-zsh
+* git clone p10k
+* brew taps
+* brew install explicits (loop doesn't work, concat list to one line)
+* install chrome, docker, keeping you awake, jetbrains toolkit 
+* increase docker available memory
+* disable capslock
+* dnsmasq
+  - copy dnsmasq to /opt/homebrew/etc
+  - start
+  - set network
+"
