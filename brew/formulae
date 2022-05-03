@@ -6,11 +6,15 @@ fish
 git
 gnu-units
 htop
+jless
+jq
 nmap
 poetry
 python
 rsync
 ruby
 shellcheck
+terraform
+terraformer
 vim
 zsh
