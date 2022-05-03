@@ -77,7 +77,7 @@ echo 'explicit'
 if [ ! -r "$HOME/.config/homebrew/explicit" ]; then
     mkdir -p "$HOME/.config/homebrew"
     rm -f "$HOME/.config/homebrew/explicit"
-    ln_home explicit .config/homebrew/explicit
+    ln_home brew/formulae .config/homebrew/explicit
 fi
 
 echo 'see https://github.com/mathiasbynens/dotfiles/blob/main/.macos'
