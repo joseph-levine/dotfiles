@@ -14,6 +14,7 @@ ln_home() {
 }
 
 if ! type brew >/dev/null 2>&1; then
+    # oy...
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
@@ -31,6 +32,11 @@ while IFS= read -r line; do
     brew install --cask "$line"
 done < brew/casks
 brew cleanup
+
+if [ ! -d /etc/resolver ]; then
+    sudo mkdir /etc/resolver
+    echo 'nameserver 127.0.0.1' | sudo tee -a '/etc/resolver/test'
+fi
 
 if [ ! -r "$HOME/.vim/autoload/plug.vim" ]; then
     echo 'vim plug'
@@ -144,6 +150,10 @@ echo 'web dev safari'
 defaults write com.apple.Safari IncludeDevelopMenu -bool true
 defaults write com.apple.Safari WebKitDeveloperExtrasEnabledPreferenceKey -bool true
 defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled -bool true
+# shellcheck disable=SC2016
+defaults write com.apple.safari NSUserKeyEquivalents '{"Disable JavaScript" = "@$j";}'
+# shellcheck disable=SC2016
+defaults write com.sequel-ace.sequel-ace NSUserKeyEquivalents '{"Back In History" = "@["; "Forward In History" = "@]";}'
 
 echo "git - I'm me!"
 git config --global user.name "Joseph Levine"
@@ -184,7 +194,7 @@ echo "now,
 * git clone p10k
 * brew taps
 * FIXME: brew install explicits (loop doesn't work, concat list to one line)
-* install chrome, docker, keeping you awake, jetbrains toolkit
+* install chrome, docker, keeping you awake, jetbrains toolkit, cloudflare WARP
 * in chrome, go to meet.google.com, then click install in the URL bar
 * increase docker available memory
 * dnsmasq
@@ -192,4 +202,5 @@ echo "now,
   - start
   - set network
 * FIXME:in safari: enable developer tools
+* Music: set to lossless
 "
