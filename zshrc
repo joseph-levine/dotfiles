@@ -154,6 +154,7 @@ fi
 if type -p watch >/dev/null; then
     alias nods="watch -n300 find $HOME -type f -name '.DS_Store' -delete"
 fi
+alais mkbin='install /dev/null'
 alias mktg='cd $(mktemp -d) && git init'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds="find $HOME -type f -name '.DS_Store' -delete"
@@ -170,7 +171,7 @@ fi
 alias usr-ports-in-use="lsof -iTCP -sTCP:LISTEN -n -P | awk 'FNR >= 2 { print \$9 }' | cut -f 2 -d ':' | sort -n -u"
 alias vimrc="$EDITOR $HOME/.vimrc"
 alias wipe=':>'
-alias zshrc="$EDITOR HOME/.zshrc"
+alias zshrc="$EDITOR $HOME/.zshrc"
 
 cw() { f=$(which "$1"); cat "$f"; }
 dns() {
