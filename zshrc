@@ -154,7 +154,7 @@ fi
 if type -p watch >/dev/null; then
     alias nods="watch -n300 find $HOME -type f -name '.DS_Store' -delete"
 fi
-alais mkbin='install /dev/null'
+alias mkbin='install /dev/null'
 alias mktg='cd $(mktemp -d) && git init'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds="find $HOME -type f -name '.DS_Store' -delete"

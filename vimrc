@@ -53,3 +53,4 @@ noremap <Leader>p "*p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " turn on spell check for markdown
 autocmd FileType markdown :set spell
+autocmd FileType nginx setlocal shiftwidth=4 tabstop=4 expandtab
