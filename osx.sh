@@ -80,6 +80,14 @@ if [ ! -r "$HOME/.config/homebrew/explicit" ]; then
     ln_home brew/formulae .config/homebrew/explicit
 fi
 
+echo 'nvim'
+if [ ! -L "$HOME/.config/nvim" ]; then
+    if [ -d "$HOME/.config/nvim" ]; then
+        rm -r "$HOME/.config/nvim"
+    fi
+    ln_home nvim .config/nvim
+fi
+
 echo 'see https://github.com/mathiasbynens/dotfiles/blob/main/.macos'
 echo 'open save panel'
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
