@@ -93,7 +93,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='vim'
+export EDITOR='nvim'
+alias vi="$EDITOR"
 # else
 #   export EDITOR='mvim'
 # fi
@@ -169,7 +170,11 @@ if type -p gunits >/dev/null; then
     alias units='gunits'
 fi
 alias usr-ports-in-use="lsof -iTCP -sTCP:LISTEN -n -P | awk 'FNR >= 2 { print \$9 }' | cut -f 2 -d ':' | sort -n -u"
-alias vimrc="$EDITOR $HOME/.vimrc"
+if type -p nvim >/dev/null; then
+    alias vimrc="$EDITOR $HOME/.config/nvim/init.vim"
+else
+    alias vimrc="$EDITOR $HOME/.vimrc"
+fi
 alias wipe=':>'
 alias zshrc="$EDITOR $HOME/.zshrc"
 
