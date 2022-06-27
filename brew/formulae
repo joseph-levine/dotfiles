@@ -12,13 +12,14 @@ git
 gnu-units
 hadolint
 htop
-jq
 jless
+jq
 kubernetes-cli
 lazydocker
 lazygit
 mysql-client
 nmap
+nvim
 platformio
 poetry
 prusaslicer
