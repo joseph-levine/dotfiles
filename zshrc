@@ -187,12 +187,14 @@ dns() {
 exdocker() { docker exec -it "${1}" /bin/sh -c 'if [ -x /bin/bash ]; then /bin/bash; else /bin/sh; fi'; }
 alias ex-account='exdocker account'
 alias ex-admin='exdocker admin'
-alias ex-main='exdocker main'
+alias ex-api='exdocker api'
+alias ex-hasura='exdocker hasura'
+alias ex-maihog='exdocker mailhog'
+alias ex-mysql='exdocker mysql'
 alias ex-nginx='exdocker nginx'
+alias ex-postgres='exdocker postgres'
 alias ex-queue='exdocker queue'
 alias ex-redis='exdocker redis'
-alias ex-mysql='exdocker mysql'
-alias ex-maihog='exdocker mailhog'
 sshfs() { mkdir "$HOME/$1"; \sshfs "$1":/ "$HOME/$1"; }
 timer() { sleep "$@" && alert; }
 unsshfs() { umount "$1"; rmdir "$1"; }
