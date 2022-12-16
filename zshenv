@@ -1,4 +1,3 @@
-echo zshenv loaded
 # cargo
 if [ -r "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"

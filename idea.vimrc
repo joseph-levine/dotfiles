@@ -12,6 +12,7 @@ set incsearch
 " Don't use Ex mode, use Q for formatting.
 map Q gq
 
+Plug 'tpope/vim-surround'
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action

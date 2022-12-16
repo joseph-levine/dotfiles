@@ -5,6 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 if [ -x /opt/homebrew/bin/brew ]; then
@@ -185,16 +186,7 @@ dns() {
     sudo killall -HUP mDNSResponder;
 }
 exdocker() { docker exec -it "${1}" /bin/sh -c 'if [ -x /bin/bash ]; then /bin/bash; else /bin/sh; fi'; }
-alias ex-account='exdocker account'
-alias ex-admin='exdocker admin'
-alias ex-api='exdocker api'
-alias ex-hasura='exdocker hasura'
-alias ex-maihog='exdocker mailhog'
-alias ex-mysql='exdocker mysql'
-alias ex-nginx='exdocker nginx'
-alias ex-postgres='exdocker postgres'
-alias ex-queue='exdocker queue'
-alias ex-redis='exdocker redis'
+alias ex='exdocker'
 sshfs() { mkdir "$HOME/$1"; \sshfs "$1":/ "$HOME/$1"; }
 timer() { sleep "$@" && alert; }
 unsshfs() { umount "$1"; rmdir "$1"; }

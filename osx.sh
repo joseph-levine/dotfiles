@@ -54,6 +54,7 @@ ln_home global.gitignore .gitignore
 ln_home .p10k.zsh .p10k.zsh
 ln_home zshenv .zshenv
 ln_home zshrc .zshrc
+ln_home psqlrc .psqlrc
 
 echo 'alacritty'
 mkdir -p "$HOME/.config/alacritty"

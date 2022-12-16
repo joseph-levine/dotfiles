@@ -4,13 +4,15 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 Plug 'dmerejkowsky/vim-ale'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 source ~/.shared.vimrc
 " Settings
 set shortmess=ilnxtToO
+set nohlsearch
 
 " Commands
 com! FormatXML :%!python3 -c "import xml.dom.minidom, sys; print(xml.dom.minidom.parse(sys.stdin).toprettyxml())"

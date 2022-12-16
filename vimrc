@@ -4,7 +4,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin()
 " nginx
 Plug 'chr4/nginx.vim'
 " .fish
