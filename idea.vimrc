@@ -1,4 +1,5 @@
 "" Source your .vimrc
+source ~/.shared-plugins.vimrc
 source ~/.shared.vimrc
 
 "" -- Suggested options --
@@ -8,11 +9,10 @@ set scrolloff=5
 
 " Do incremental searching.
 set incsearch
+set ideajoin
 
 " Don't use Ex mode, use Q for formatting.
 map Q gq
-
-Plug 'tpope/vim-surround'
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action

@@ -94,7 +94,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
-export EDITOR='nvim'
+export EDITOR='vim'
 alias vi="$EDITOR"
 # else
 #   export EDITOR='mvim'
@@ -127,7 +127,10 @@ elif type -p tput >/dev/null; then
 else
     alias ding='echo '
 fi
+alias black='black -l 120'
+alias dcm='docker compose'
 alias dotrc="zshrc"
+alias downup='dcm down && dcm up -d'
 alias git-aliases='alias | grep "git" | bat -l zsh --style plain'
 alias hosts='sudo $EDITOR /etc/hosts'
 if type -p kubectl >/dev/null; then
@@ -148,6 +151,7 @@ alias listeners='sudo lsof -iTCP -sTCP:LISTEN -n -P'
 if type -p exa >/dev/null; then
     alias ls='exa'
     alias ll='ls -lbg'
+    alias l='ll'
     alias lll='ls -lbg@ --git'
 fi
 if type -p mtr >/dev/null; then
@@ -161,12 +165,12 @@ alias mktg='cd $(mktemp -d) && git init'
 alias non-git-aliases='alias | grep -v "git" | bat -l zsh --style plain'
 alias rmds="find $HOME -type f -name '.DS_Store' -delete"
 alias rmtg='p=${PWD:P}; if [[ $p = $TMPDIR/* ]]; then printf "remove %s?" "$p"; read -r confirm; case $confirm in [Yy]* ) cd "$HOME" || exit; rm -rf "$p";; *) :;; esac; fi'
-alias shell-pip-up="pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias sshconfig="$EDITOR $HOME/.ssh/config"
 if type -p todo.sh >/dev/null; then
     alias t='todo.sh'
 fi
 alias timestamp='date +"%s"'
+alias timestamp-to-date='date -r '
 if type -p gunits >/dev/null; then
     alias units='gunits'
 fi
@@ -186,9 +190,14 @@ dns() {
     sudo killall -HUP mDNSResponder;
 }
 exdocker() { docker exec -it "${1}" /bin/sh -c 'if [ -x /bin/bash ]; then /bin/bash; else /bin/sh; fi'; }
+alias e="$EDITOR"
 alias ex='exdocker'
 sshfs() { mkdir "$HOME/$1"; \sshfs "$1":/ "$HOME/$1"; }
 timer() { sleep "$@" && alert; }
+tbgd="$HOME/Developer/m1/dex"
+if [ -f "$tbgd/venv/bin/python" ]; then
+    tbg() { "$tbgd/venv/bin/python" "$tbgd/current.py" ]; }
+fi
 unsshfs() { umount "$1"; rmdir "$1"; }
 
 if type -p direnv > /dev/null; then

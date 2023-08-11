@@ -28,6 +28,11 @@ Plug 'tpope/vim-sensible'
 
 " .editorconfig called last in hopes of overriding
 Plug 'editorconfig/editorconfig-vim'
+
+" fuzzy search
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+source ~/.shared-plugins.vimrc
 call plug#end()
 
 source ~/.shared.vimrc
@@ -47,6 +52,7 @@ map <Leader>w <C-W>w
 
 noremap <Leader>y "*y
 noremap <Leader>p "*p
+noremap <Leader>f :GFiles<CR>
 
 " autocmds (be even more sparing with these!)
 " quit NERDTree if it's the last remaining window

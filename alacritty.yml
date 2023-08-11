@@ -60,6 +60,8 @@ key_bindings:
   - { key: 'Key7', mods: Command, chars: "\x02\x37" }
   - { key: 'Key8', mods: Command, chars: "\x02\x38" }
   - { key: 'Key9', mods: Command, chars: "\x02\x39" }
+  - { key: 'Key1', mods: Command|Shift, chars: "\x02\x1b\x31" }
+  - { key: 'Key2', mods: Command|Shift, chars: "\x02\x1b\x32" }
   - { key: W, mods: Command, chars: "\x02\x77" }
 
 shell:
