@@ -14,6 +14,9 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="${HOME}/.oh-my-zsh"
+export ZSHZ_DATA="$XDG_DATA_HOME/z"
+export HISTFILE="$XDG_STATE_HOME/zsh/history"
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,

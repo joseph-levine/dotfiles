@@ -1,1 +1,3 @@
-fish/functions/z.fish
+config/fish/functions/z.fish
+config/pg/pgpass
+config/StardewValley/**
