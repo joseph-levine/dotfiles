@@ -13,8 +13,9 @@ export XDG_STATE_HOME
 
 # cargo
 if type -p rustup-init > /dev/null; then
-    CARGO_HOME="$XDG_DATA_HOME"/cargo
-    export CARGO_HOME
+    CARGO_HOME="$XDG_DATA_HOME/cargo"
+    RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+    export CARGO_HOME RUSTUP_HOME
     if [ -r "$CARGO_HOME/env" ]; then
          . "$CARGO_HOME/env"
     fi
