@@ -49,8 +49,18 @@ fi
 # n (node)
 N_PREFIX="$HOME/Library/n"
 if [ -d "$N_PREFIX" ]; then
-    export N_PREFIX
+    NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc 
+    export NPM_CONFIG_USERCONFIG N_PREFIX
     PATH="$PATH:$N_PREFIX/bin"
+fi
+
+# postgres
+if type -p psql > /dev/null; then
+    PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
+    PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
+    PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
+    PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
+    export PSQLRC PSQL_HISTORY PGPASSFILE PGSERVICEFILE
 fi
 
 # vmware
@@ -68,10 +78,4 @@ HOMEBREW_NO_ENV_HINTS=1
 export HOMEBREW_NO_ENV_HINTS
 
 
-if type -p psql > /dev/null; then
-    export PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"
-    export PSQL_HISTORY="$XDG_STATE_HOME/psql_history"
-    export PGPASSFILE="$XDG_CONFIG_HOME/pg/pgpass"
-    export PGSERVICEFILE="$XDG_CONFIG_HOME/pg/pg_service.conf"
-fi
 export PATH

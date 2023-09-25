@@ -195,6 +195,7 @@ dns() {
 exdocker() { docker exec -it "${1}" /bin/sh -c 'if [ -x /bin/bash ]; then /bin/bash; else /bin/sh; fi'; }
 alias e="$EDITOR"
 alias ex='exdocker'
+pgadmin() { export SQLITE_PATH="${XDG_STATE_HOME:-$HOME}/pgadmin/pgadmin.db"; open /Applications/pgAdmin\ 4.app }
 sshfs() { mkdir "$HOME/$1"; \sshfs "$1":/ "$HOME/$1"; }
 timer() { sleep "$@" && alert; }
 tbgd="$HOME/Developer/m1/dex"
