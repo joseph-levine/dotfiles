@@ -1,3 +1,4 @@
 config/fish/functions/z.fish
 config/pg/pgpass
 config/StardewValley/**
+config/hasura/last_update_check_at
