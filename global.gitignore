@@ -165,3 +165,8 @@ venv/
 composer.phar
 *.icloud
 out*.*
+# when a program uses the env var name instead of the env var
+*XDG_CACHE_HOME*/
+*XDG_CONFIG_HOME*/
+*XDG_DATA_HOME*/
+*XDG_STATE_HOME*/

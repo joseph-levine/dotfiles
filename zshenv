@@ -54,6 +54,12 @@ if [ -d "$N_PREFIX" ]; then
     PATH="$PATH:$N_PREFIX/bin"
 fi
 
+# per-direcory-history
+HISTORY_BASE="$XDG_CACHE_HOME/directory_history"
+if [ -d "$HISTORY_BASE" ]; then
+    export HISTORY_BASE
+fi
+
 # postgres
 if type -p psql > /dev/null; then
     PSQLRC="$XDG_CONFIG_HOME/pg/psqlrc"

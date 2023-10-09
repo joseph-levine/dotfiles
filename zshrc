@@ -203,10 +203,8 @@ if [ -f "$tbgd/venv/bin/python" ]; then
     tbg() { "$tbgd/venv/bin/python" "$tbgd/current.py" ]; }
 fi
 unsshfs() { umount "$1"; rmdir "$1"; }
-
-if type -p direnv > /dev/null; then
-    eval "$(direnv hook zsh)"
+if type -p yarn >/dev/null; then
+    alias yarn='yarn --use-yarnrc "$XDG_CONFIG_HOME/yarn/config"'
 fi
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f "$HOME/.p10k.zsh" ]] || source "$HOME/.p10k.zsh"

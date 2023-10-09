@@ -32,6 +32,7 @@ Plug 'editorconfig/editorconfig-vim'
 " fuzzy search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+
 source ~/.shared-plugins.vimrc
 call plug#end()
 
